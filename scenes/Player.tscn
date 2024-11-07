@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7wkv2fy1g82o"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_37k4i"]
+[ext_resource type="Texture2D" uid="uid://betwv7iq0yflx" path="res://assets/WIZARD.png" id="2_qab18"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fs1kr"]
+size = Vector2(53, 74)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+script = ExtResource("1_37k4i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.241935, 0.241935)
+texture = ExtResource("2_qab18")
+region_enabled = true
+region_rect = Rect2(19.8998, 0, 402.157, 372.035)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7.5, 7)
+shape = SubResource("RectangleShape2D_fs1kr")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
