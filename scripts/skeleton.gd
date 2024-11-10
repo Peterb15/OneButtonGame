@@ -1,13 +1,14 @@
 extends CharacterBody2D
 
 #Speed of Enemy
-var enemy_chase_speed := 100
+var enemy_chase_speed := 0
+var begin := false
 
 #Reference to the player node
 var caught: bool = false
 
 func _physics_process(delta: float) -> void:
-	if caught == false:
+	if caught == false && begin == true:
 		velocity.x = enemy_chase_speed
 		move_and_slide()
 		$AnimatedSprite2D.play("moving_right")

@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2k6bm4a6icjm"]
+[gd_scene load_steps=6 format=3 uid="uid://c2k6bm4a6icjm"]
 
 [ext_resource type="PackedScene" uid="uid://c7wkv2fy1g82o" path="res://scenes/Player.tscn" id="1_vb14k"]
+[ext_resource type="Script" path="res://main.gd" id="1_ydauw"]
 [ext_resource type="PackedScene" uid="uid://dmq3rkidytpfr" path="res://scenes/Ground.tscn" id="2_m6wnl"]
 [ext_resource type="PackedScene" uid="uid://uugqmiym0vev" path="res://scenes/forest.tscn" id="3_xc7pq"]
 [ext_resource type="PackedScene" uid="uid://cea171bvv5f7q" path="res://scenes/skeleton.tscn" id="4_2dytc"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_ydauw")
 
 [node name="Player" parent="." instance=ExtResource("1_vb14k")]
 top_level = true
@@ -16,6 +18,48 @@ scale = Vector2(0.465099, 0.465099)
 scale = Vector2(0.868087, 0.729147)
 offset = Vector2(0, -106.985)
 zoom = Vector2(2, 2)
+
+[node name="Defeat" type="RichTextLabel" parent="Player/Camera2D"]
+visible = false
+offset_left = -170.899
+offset_top = -433.468
+offset_right = 248.101
+offset_bottom = -248.468
+theme_override_font_sizes/normal_font_size = 72
+text = "You Lose..."
+
+[node name="Begin" type="RichTextLabel" parent="Player/Camera2D"]
+offset_left = -170.899
+offset_top = -433.468
+offset_right = 248.101
+offset_bottom = -248.468
+theme_override_font_sizes/normal_font_size = 72
+text = "To Begin..."
+
+[node name="Instructions" type="RichTextLabel" parent="Player/Camera2D"]
+visible = false
+offset_left = -210.528
+offset_top = -294.876
+offset_right = 240.472
+offset_bottom = -179.876
+theme_override_font_sizes/normal_font_size = 36
+text = "Hold Space to Play Again"
+
+[node name="Begin_Instructions" type="RichTextLabel" parent="Player/Camera2D"]
+offset_left = -163.469
+offset_top = -306.671
+offset_right = 287.531
+offset_bottom = -191.671
+theme_override_font_sizes/normal_font_size = 36
+text = "Hold Space to Play "
+
+[node name="Space" type="RichTextLabel" parent="Player/Camera2D"]
+offset_left = -71.8273
+offset_top = -227.055
+offset_right = 47.1727
+offset_bottom = -112.055
+theme_override_font_sizes/normal_font_size = 36
+text = "SPACE"
 
 [node name="Ground" parent="." instance=ExtResource("2_m6wnl")]
 position = Vector2(54, 36)
