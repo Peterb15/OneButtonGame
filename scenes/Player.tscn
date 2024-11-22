@@ -1,11 +1,32 @@
-[gd_scene load_steps=20 format=3 uid="uid://c7wkv2fy1g82o"]
+[gd_scene load_steps=26 format=3 uid="uid://c7wkv2fy1g82o"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_37k4i"]
+[ext_resource type="Texture2D" uid="uid://7fsita5b1glv" path="res://assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Characters(100x100)/Soldier/Soldier/Soldier-Death.png" id="2_t2x2a"]
 [ext_resource type="Texture2D" uid="uid://btmhp1afew3fu" path="res://assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Characters(100x100)/Soldier/Soldier/Soldier.png" id="2_wxda7"]
 [ext_resource type="Texture2D" uid="uid://bb7yr5o2kn8ht" path="res://assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Characters(100x100)/Soldier/Soldier/Soldier-Walk.png" id="3_6y0rw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fs1kr"]
 size = Vector2(53, 74)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51pg7"]
+atlas = ExtResource("2_t2x2a")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yriop"]
+atlas = ExtResource("2_t2x2a")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8katb"]
+atlas = ExtResource("2_t2x2a")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_taa7s"]
+atlas = ExtResource("2_t2x2a")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xl6pm"]
+atlas = ExtResource("2_t2x2a")
+region = Rect2(300, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lvyoc"]
 atlas = ExtResource("2_wxda7")
@@ -67,6 +88,31 @@ region = Rect2(700, 0, 100, 100)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_51pg7")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yriop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8katb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_taa7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xl6pm")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_lvyoc")
 }, {
 "duration": 1.0,
@@ -113,9 +159,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fcwsf")
 }],
-"loop": true,
+"loop": false,
 "name": &"running",
-"speed": 18.0
+"speed": 15.0
 }]
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
@@ -132,7 +178,9 @@ wait_time = 5.0
 position = Vector2(11, 17)
 scale = Vector2(4.28, 4.28)
 sprite_frames = SubResource("SpriteFrames_qb7ii")
-animation = &"running"
-frame_progress = 0.517014
+animation = &"death"
+autoplay = "default"
+frame = 3
+frame_progress = 1.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

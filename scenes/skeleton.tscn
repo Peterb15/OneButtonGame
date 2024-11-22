@@ -336,12 +336,13 @@ sprite_frames = SubResource("SpriteFrames_ho76v")
 animation = &"hit"
 
 [node name="DetectionRange" type="Area2D" parent="."]
-position = Vector2(-3, 0)
+position = Vector2(5, 1)
+scale = Vector2(1.2, 1.2)
 collision_layer = 2
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
-position = Vector2(4, -7)
+position = Vector2(-4, -4)
 shape = SubResource("CircleShape2D_cvtd8")
 
 [connection signal="area_entered" from="DetectionRange" to="." method="_on_detection_range_area_entered"]

@@ -20,7 +20,7 @@ func _on_detection_range_area_entered(area: Area2D) -> void:
 	var player = $DetectionRange.get_overlapping_bodies()
 	if (not player.is_empty()):
 		print(player[0])
-		if player == CharacterBody2D:
+		if player[0] == CharacterBody2D:
 			print("DEATH")
 			player[0].hp = 0
 	pass # Replace with function body.
