@@ -12,7 +12,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x = enemy_chase_speed
 		move_and_slide()
 		$AnimatedSprite2D.play("moving_right")
-
+		if $Skeleton_Moving.playing != true:
+			$Skeleton_Moving.play()
 
 func _on_detection_range_area_entered(area: Area2D) -> void:
 	
@@ -28,6 +29,8 @@ func _on_detection_range_area_entered(area: Area2D) -> void:
 
 func _on_detection_range_body_entered(body: Node2D) -> void:
 	$AnimatedSprite2D.play("hit")
+	$Skeleton_Moving.stop()
+	$Skeleton_Attack.play()
 	var player = $DetectionRange.get_overlapping_bodies()
 	if (body.is_in_group("player")): 
 		print(body)

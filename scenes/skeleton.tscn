@@ -1,9 +1,11 @@
-[gd_scene load_steps=50 format=3 uid="uid://cea171bvv5f7q"]
+[gd_scene load_steps=52 format=3 uid="uid://cea171bvv5f7q"]
 
 [ext_resource type="Script" path="res://scripts/skeleton.gd" id="1_t0sfo"]
 [ext_resource type="Texture2D" uid="uid://bbrcam0jf0prb" path="res://assets/Skeleton/Sprite Sheets/Skeleton Idle.png" id="2_7tlwl"]
 [ext_resource type="Texture2D" uid="uid://c6wy6r2bpxme2" path="res://assets/Skeleton/Sprite Sheets/Skeleton Attack.png" id="3_575f0"]
 [ext_resource type="Texture2D" uid="uid://cl5td3kd1g42w" path="res://assets/Skeleton/Sprite Sheets/Skeleton Walk.png" id="4_ttv6g"]
+[ext_resource type="AudioStream" uid="uid://xo0dkyfcd17r" path="res://assets/SFX_Used/19_orc_charging_loop.wav" id="5_ac2xn"]
+[ext_resource type="AudioStream" uid="uid://crylqvd0h7qqp" path="res://assets/SFX_Used/20_orc_special_atk.wav" id="6_64jdg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_15rns"]
 size = Vector2(22, 33)
@@ -331,9 +333,10 @@ position = Vector2(1, -6.5)
 shape = SubResource("RectangleShape2D_15rns")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1, -7)
+position = Vector2(0.5, -7)
+scale = Vector2(0.958333, 1)
 sprite_frames = SubResource("SpriteFrames_ho76v")
-animation = &"hit"
+frame_progress = 0.529726
 
 [node name="DetectionRange" type="Area2D" parent="."]
 position = Vector2(5, 1)
@@ -344,6 +347,16 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
 position = Vector2(-4, -4)
 shape = SubResource("CircleShape2D_cvtd8")
+
+[node name="Skeleton_Moving" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ac2xn")
+volume_db = 1.0
+pitch_scale = 0.9
+bus = &"SFX"
+
+[node name="Skeleton_Attack" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_64jdg")
+bus = &"SFX"
 
 [connection signal="area_entered" from="DetectionRange" to="." method="_on_detection_range_area_entered"]
 [connection signal="body_entered" from="DetectionRange" to="." method="_on_detection_range_body_entered"]

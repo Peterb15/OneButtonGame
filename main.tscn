@@ -1,10 +1,31 @@
-[gd_scene load_steps=10 format=3 uid="uid://c2k6bm4a6icjm"]
+[gd_scene load_steps=16 format=3 uid="uid://c2k6bm4a6icjm"]
 
 [ext_resource type="PackedScene" uid="uid://c7wkv2fy1g82o" path="res://scenes/Player.tscn" id="1_vb14k"]
 [ext_resource type="Script" path="res://main.gd" id="1_ydauw"]
 [ext_resource type="PackedScene" uid="uid://dmq3rkidytpfr" path="res://scenes/Ground.tscn" id="2_m6wnl"]
 [ext_resource type="PackedScene" uid="uid://uugqmiym0vev" path="res://scenes/forest.tscn" id="3_xc7pq"]
 [ext_resource type="PackedScene" uid="uid://cea171bvv5f7q" path="res://scenes/skeleton.tscn" id="4_2dytc"]
+[ext_resource type="AudioStream" uid="uid://lkx3jqcd54dg" path="res://assets/Minifantasy_Dungeon_Music/Music/Goblins_Den_(Regular).wav" id="6_btyu5"]
+[ext_resource type="AudioStream" uid="uid://cc2ihuhuv5pnh" path="res://assets/SFX_Used/01_chest_open_2.wav" id="6_ent6u"]
+[ext_resource type="AudioStream" uid="uid://ds5x14ug2qgbj" path="res://assets/SFX_Used/02_chest_close_1.wav" id="7_48uc8"]
+[ext_resource type="AudioStream" uid="uid://bl8uro7lp0egm" path="res://assets/Minifantasy_Dungeon_Music/Music/Goblins_Dance_(Battle).wav" id="7_yuco8"]
+[ext_resource type="AudioStream" uid="uid://c0wulcrerp5av" path="res://assets/SFX_Used/14_human_death_spin.wav" id="10_th0ji"]
+[ext_resource type="AudioStream" uid="uid://ijvhbsw6qupl" path="res://assets/SFX_Used/brass-fanfare-reverberated-146263.mp3" id="11_8clox"]
+
+[sub_resource type="Animation" id="Animation_emgrh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(157, -19)]
+}
 
 [sub_resource type="Animation" id="Animation_vaa23"]
 resource_name = "camera_movement"
@@ -20,21 +41,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(157, -19), Vector2(2360, -19)]
-}
-
-[sub_resource type="Animation" id="Animation_emgrh"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(157, -19)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fjmw1"]
@@ -62,7 +68,7 @@ disable_mode = 2
 position = Vector2(250, 70)
 
 [node name="Skeleton" parent="." instance=ExtResource("4_2dytc")]
-position = Vector2(-122, -12)
+position = Vector2(-112, -12)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(157, -19)
@@ -145,6 +151,36 @@ rotation = -1.5708
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VictoryDetection"]
 position = Vector2(-38.5, 0)
 shape = SubResource("RectangleShape2D_jrshw")
+
+[node name="Idle_Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_btyu5")
+autoplay = true
+bus = &"Music"
+
+[node name="Run_Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_yuco8")
+bus = &"Music"
+
+[node name="Start_SFX" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0.000244141, -1.90735e-06)
+stream = ExtResource("7_48uc8")
+volume_db = 1.0
+bus = &"SFX"
+
+[node name="Countdown_SFX" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0.000244141, -1.90735e-06)
+stream = ExtResource("6_ent6u")
+volume_db = 1.0
+bus = &"SFX"
+
+[node name="Player_Death" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0.000244141, -1.90735e-06)
+stream = ExtResource("10_th0ji")
+bus = &"SFX"
+
+[node name="Victory_SFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_8clox")
+bus = &"Music"
 
 [connection signal="timeout" from="deathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="body_entered" from="VictoryDetection" to="." method="_on_victory_detection_body_entered"]

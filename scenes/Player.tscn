@@ -1,9 +1,10 @@
-[gd_scene load_steps=26 format=3 uid="uid://c7wkv2fy1g82o"]
+[gd_scene load_steps=27 format=3 uid="uid://c7wkv2fy1g82o"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_37k4i"]
 [ext_resource type="Texture2D" uid="uid://7fsita5b1glv" path="res://assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Characters(100x100)/Soldier/Soldier/Soldier-Death.png" id="2_t2x2a"]
 [ext_resource type="Texture2D" uid="uid://btmhp1afew3fu" path="res://assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Characters(100x100)/Soldier/Soldier/Soldier.png" id="2_wxda7"]
 [ext_resource type="Texture2D" uid="uid://bb7yr5o2kn8ht" path="res://assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Characters(100x100)/Soldier/Soldier/Soldier-Walk.png" id="3_6y0rw"]
+[ext_resource type="AudioStream" uid="uid://boumyns5bkay2" path="res://assets/SFX_Used/15_human_dash_1.wav" id="5_f5nhb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fs1kr"]
 size = Vector2(53, 74)
@@ -182,5 +183,11 @@ animation = &"death"
 autoplay = "default"
 frame = 3
 frame_progress = 1.0
+
+[node name="Player_Running" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_f5nhb")
+volume_db = -3.0
+pitch_scale = 2.03
+bus = &"SFX"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

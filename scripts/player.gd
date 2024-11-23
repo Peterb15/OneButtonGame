@@ -10,7 +10,9 @@ func _physics_process(delta):
 		print("Move Speed: ")
 		print(move_speed)
 		velocity.x = move_speed
-		$AnimatedSprite2D.play("running")
+		if move_speed != 0:
+			$Player_Running.play()
+			$AnimatedSprite2D.play("running")
 	else:
 		velocity.x = 0
 
