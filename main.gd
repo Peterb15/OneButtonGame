@@ -104,6 +104,7 @@ func _process(delta):
 		$Camera2D/Victory.visible = true
 		$Camera2D/Instructions.visible = true
 		$Camera2D/Space.visible = true
+		$Skeleton/AnimatedSprite2D.play("default")
 		if $Run_Music.playing == true:
 			$Run_Music.stop()
 			$Idle_Music.play()
